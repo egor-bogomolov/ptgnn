@@ -1,7 +1,7 @@
 import logging
 import math
 from typing import Any, Counter, Dict, List, NamedTuple, Optional, Union
-from typing_extensions import Final, Literal
+from typing_extensions import Final
 
 import numpy as np
 import torch
@@ -149,7 +149,7 @@ class StrElementRepresentationModel(
     def __init__(
         self,
         *,
-        token_splitting: Literal["token", "subtoken", "bpe", "char"],
+        token_splitting,
         embedding_size: int = 128,
         dropout_rate: float = 0.2,
         # Vocabulary Options
@@ -157,7 +157,7 @@ class StrElementRepresentationModel(
         min_freq_threshold: int = 5,
         # BPE/Subtoken Options
         max_num_subtokens: Optional[int] = 5,
-        subtoken_combination: Literal["sum", "mean", "max"] = "sum",
+        subtoken_combination = "sum",
         # Char Models
         cnn_config: CnnConfig = CnnConfig(
             l1_filters=256, l1_window_size=3, l2_filters=128, l2_window_size=3, lout_window_size=3
@@ -185,7 +185,7 @@ class StrElementRepresentationModel(
         return self.embedding_size
 
     @property
-    def splitting_kind(self) -> Literal["token", "subtoken", "bpe", "char"]:
+    def splitting_kind(self):
         return self._splitting_kind
 
     # region Metadata Loading

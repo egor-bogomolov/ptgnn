@@ -1,7 +1,6 @@
 from abc import abstractmethod
 from math import sqrt
 from typing import NamedTuple, Union
-from typing_extensions import Literal
 
 import torch
 from torch import nn
@@ -26,7 +25,7 @@ class AbstractVarSizedElementReduce(nn.Module):
 
 
 class SimpleVarSizedElementReduce(AbstractVarSizedElementReduce):
-    def __init__(self, summarization_type: Literal["sum", "mean", "max", "min"]):
+    def __init__(self, summarization_type):
         super().__init__()
         assert summarization_type in {"sum", "mean", "max", "min"}
         self.__summarization_type = summarization_type
